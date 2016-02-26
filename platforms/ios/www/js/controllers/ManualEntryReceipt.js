@@ -1,31 +1,31 @@
 angular.module('ManualEntryReceipt.controllers', [])
-    .controller('ManualEntryCtrl', function($scope, imageToBLOB, $cordovaBarcodeScanner, $ionicHistory, $ionicPopup, $ionicPlatform, $ionicLoading, DB, $q, $stateParams, API_URL, $http, $state, DatesStorage, $cordovaCamera) {
+.controller('ManualEntryCtrl', function($scope, imageToBLOB, $cordovaBarcodeScanner, $ionicHistory, $ionicPopup, $ionicPlatform, $ionicLoading, DB, $q, $stateParams, API_URL, $http, $state, DatesStorage, $cordovaCamera) {
 
 
-        $scope.receipt = {};
-        var toDelete = [];
-        var shouldGoNext;
+    $scope.receipt = {};
+    var toDelete = [];
+    var shouldGoNext;
 
-        $ionicPlatform.ready(function() {
+    $ionicPlatform.ready(function() {
 
 
-            prettyLog($stateParams);
-            if ($stateParams.id) {
-                shouldGoNext = 'app.receipts';
-                DB.get_receipt($stateParams.id)
-                    .then(function(res) {
-                        prettyLog(res);
-                        $scope.receipt = res;
-                        setTimeout(function() {
-                            $('.validate').focus();
-                        }, 0)
-                    }).catch(function(err) {
-                        console.log(err);
-                    })
-            } else {
-                shouldGoNext = 'app.home';
-                if ($stateParams.type == 'scan') {
-                    console.log('going scan')
+        prettyLog($stateParams);
+        if ($stateParams.id) {
+            shouldGoNext = 'app.receipts';
+            DB.get_receipt($stateParams.id)
+            .then(function(res) {
+                prettyLog(res);
+                $scope.receipt = res;
+                setTimeout(function() {
+                    $('.validate').focus();
+                }, 0)
+            }).catch(function(err) {
+                console.log(err);
+            })
+        } else {
+            shouldGoNext = 'app.home';
+            if ($stateParams.type == 'scan') {
+                console.log('going scan')
                     // $scope.receipt = {
                     //     afm: Math.floor(Math.random() * 999999999) + 100000000,
                     //     poso: +((Math.random() * 10000) % 1000).toFixed(2),
@@ -42,20 +42,24 @@ angular.module('ManualEntryReceipt.controllers', [])
                         $('.validate').focus();
                     }, 1000);
                     $cordovaBarcodeScanner
-                        .scan()
-                        .then(function() {
+                    .scan()
+                    .then(function() {
                             // Success! Barcode data is here
                             $scope.receipt = {
-                                afm: undefined,
-                                poso: 1.60,
+                                afm: 078416539,
+                                poso: 10.00,
                                 printed_at: (function() {
+                                    // var x = new Date("2016-2-13 19:12");
+                                    // x.setSeconds(0);
+                                    // x.setMilliseconds(0);
+                                    // return x;
                                     var x = new Date();
                                     x.setSeconds(0);
                                     x.setMilliseconds(0);
                                     return x;
                                 })(),
-                                aa: 92,
-                                eponimia: undefined
+                                aa: 17416,
+                                eponimia: "Χαλκα Γ Glamour"
                             }
                             setTimeout(function() {
                                 $('.validate').focus();
@@ -67,25 +71,25 @@ angular.module('ManualEntryReceipt.controllers', [])
                             alert(error)
                         });
 
-                } else if ($stateParams.type == 'manual') {
+} else if ($stateParams.type == 'manual') {
 
-                    $scope.receipt = {
-                        afm: undefined,
-                        poso: undefined,
-                        printed_at: (function() {
-                            var x = new Date();
-                            x.setSeconds(0);
-                            x.setMilliseconds(0);
-                            return x;
-                        })(),
-                        aa: undefined,
-                        eponimia: undefined
-                    }
-                    setTimeout(function() {
-                        $('.validate').focus();
-                    }, 1000);
+    $scope.receipt = {
+        afm: undefined,
+        poso: undefined,
+        printed_at: (function() {
+            var x = new Date();
+            x.setSeconds(0);
+            x.setMilliseconds(0);
+            return x;
+        })(),
+        aa: undefined,
+        eponimia: undefined
+    }
+    setTimeout(function() {
+        $('.validate').focus();
+    }, 1000);
 
-                } else if ($stateParams.type == 'manual_ocr') {
+} else if ($stateParams.type == 'manual_ocr') {
                     //TODO
                     setTimeout(function() {
                         angular.element('.btn.waves-effect.waves-teal.waves-white').scope().takePicture();
@@ -93,21 +97,22 @@ angular.module('ManualEntryReceipt.controllers', [])
 
                     setTimeout(function() {
                         $scope.receipt = {
-                            afm: 078416539,
+                            afm: 094063140,
                             poso: 10.00,
                             printed_at: (function() {
-                                var x = new Date();
-                                x.setSeconds(0);
-                                x.setMilliseconds(0);
-                                return x;
-                            })(),
-                            aa: undefined,
-                            eponimia: "Χαλκα Γ. Glamour"
-                        }
-                        setTimeout(function() {
-                            $('.validate').focus();
-                        }, 1000);
-                    }, 2500)
+                             
+                             var x = new Date();
+                             x.setSeconds(0);
+                             x.setMilliseconds(0);
+                             return x;
+                         })(),
+                         aa: 331,
+                         eponimia: "Διαμαντης Μασουτης ΑΕ"
+                     }
+                     setTimeout(function() {
+                        $('.validate').focus();
+                    }, 1000);
+                 }, 2500)
 
 
 
@@ -120,53 +125,53 @@ angular.module('ManualEntryReceipt.controllers', [])
 
 
 
-        $scope.autoCompleteCategories = function(query) {
-            var deferred = $q.defer();
-            DB.search_category(query)
-                .then(function(res) {
-                    deferred.resolve(res.map(function(x) {
-                        return x.name;
-                    }));
-                })
-            return deferred.promise;
-        }
-        $scope.removeCategory = function(tag) {
-            if ($scope.receipt.id) {
-                toDelete.push({
-                    receipt_id: $scope.receipt.id,
-                    tag: tag.text
-                });
-            }
-        }
+$scope.autoCompleteCategories = function(query) {
+    var deferred = $q.defer();
+    DB.search_category(query)
+    .then(function(res) {
+        deferred.resolve(res.map(function(x) {
+            return x.name;
+        }));
+    })
+    return deferred.promise;
+}
+$scope.removeCategory = function(tag) {
+    if ($scope.receipt.id) {
+        toDelete.push({
+            receipt_id: $scope.receipt.id,
+            tag: tag.text
+        });
+    }
+}
 
-        function final_remove_categories() {
-            toDelete.forEach(function(del) {
-                DB.delete_receipt_from_category_name(del.receipt_id, del.tag)
-                    .then(prettyLog)
-                    .catch(prettyLog)
-            })
-            toDelete = [];
+function final_remove_categories() {
+    toDelete.forEach(function(del) {
+        DB.delete_receipt_from_category_name(del.receipt_id, del.tag)
+        .then(prettyLog)
+        .catch(prettyLog)
+    })
+    toDelete = [];
 
-        }
-        $scope.submit = function() {
+}
+$scope.submit = function() {
             //prettyLog($scope.receipt);
             final_remove_categories();
             if ($scope.receipt.id) {
                 DatesStorage.setEditDates();
                 console.log('going for update')
                 DB.update_receipt($scope.receipt)
-                    .then(onSaved)
-                    .catch(function(e) {
-                        console.log('error')
-                        alert(e)
-                    })
+                .then(onSaved)
+                .catch(function(e) {
+                    console.log('error')
+                    alert(e)
+                })
             } else {
                 DatesStorage.setSubmitDates();
                 DB.save_receipt($scope.receipt)
-                    .then(onSaved)
-                    .catch(function(e) {
-                        alert(e)
-                    })
+                .then(onSaved)
+                .catch(function(e) {
+                    alert(e)
+                })
             }
 
             function onSaved(saved) {
