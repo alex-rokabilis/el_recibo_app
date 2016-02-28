@@ -9,48 +9,51 @@ angular.module('HomePage.controllers', [])
     //              template: 'sadsd',
     //              okType: 'btn-floating btn-large waves-effect waves-light'
     //            })
-    $scope.$on('$ionicView.enter', function() {
+    $ionicPlatform.ready(function() {
+
+        $scope.$on('$ionicView.enter', function() {
 
 
-        DB.get_user_level().then(function(data) {
-            $scope.level = data;
-            console.log("level", data)
-        });
-        DB.get_receipts_sum().then(function(data) {
-            $scope.sum = data;
-            console.log("receipts sum", data)
-        });
+            DB.get_user_level().then(function(data) {
+                $scope.level = data;
+                console.log("level", data)
+            });
+            DB.get_receipts_sum().then(function(data) {
+                $scope.sum = data;
+                console.log("receipts sum", data)
+            });
 
-        DB.get_receipts_count().then(function(data) {
-            $scope.count = data;
-            console.log("receipts count", data)
-        });
-        $scope.logged = User.get_credentials().logged;
-        Achievements.check_completed_achievements().then(function(achievements) {
-            function showPopup() {
-                var text = achievements[++index];
-                if (!text) return;
-                $ionicPopup.show({
-                    title: 'Συγχαρητηρια',
-                    scope: $scope,
-                    cssClass: 'animated-popup tada-popup',
-                    template: text,
-                    buttons: [{
-                        text: 'OK',
-                        type: 'btn-floating btn-large waves-effect waves-light'
-                    }, {
-                        text: 'Share',
-                        type: 'btn-floating btn-large waves-effect waves-light',
+            DB.get_receipts_count().then(function(data) {
+                $scope.count = data;
+                console.log("receipts count", data)
+            });
+            $scope.logged = User.get_credentials().logged;
+            Achievements.check_completed_achievements().then(function(achievements) {
+                function showPopup() {
+                    var text = achievements[++index];
+                    if (!text) return;
+                    $ionicPopup.show({
+                        title: 'Συγχαρητηρια',
+                        scope: $scope,
+                        cssClass: 'animated-popup tada-popup',
+                        template: text,
+                        buttons: [{
+                            text: 'OK',
+                            type: 'btn-floating btn-large waves-effect waves-light'
+                        }, {
+                            text: 'Share',
+                            type: 'btn-floating btn-large waves-effect waves-light',
 
-                    }]
-                })
-            }
+                        }]
+                    })
+                }
 
 
-            var index = -1;
-            showPopup()
+                var index = -1;
+                showPopup()
+            })
+
         })
-
     })
 
     setTimeout(function() {
@@ -62,8 +65,8 @@ angular.module('HomePage.controllers', [])
     }
     $scope.showPopup = function() {
         popup = $ionicPopup.show({
-            template: '<button ng-click="goToScan()"  class="btn  waves-effect waves-teal">Barcode</button><br>' +
-                '<button ng-click="goToManualOCR()" class="btn waves-effect waves-teal">OCR</button><br>' +
+            template: '<button disabled ng-click="goToScan()"  class="btn  waves-effect waves-teal">Barcode</button><br>' +
+                '<button disabled ng-click="goToManualOCR()" class="btn waves-effect waves-teal">OCR</button><br>' +
                 '<button ng-click="goToManual()" class="btn waves-effect waves-teal">Χειροκινητα</button><br>',
             title: 'Μεθοδος Καταχωρησης',
             cssClass: 'custom-popup animated-popup rubberBand-popup',

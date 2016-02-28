@@ -1,72 +1,72 @@
 <ion-view view-title="Home" cache-view="false">
-  <ion-content>
-       <div id="DIV_1">
+<ion-content>
+<div id="DIV_1">
 	<!-- Info Boxes Style 2 -->
 
 	<div class="box" id="info-box-yellow">
-		 <span id="SPAN_3" style='font-size:60px;' ><i   class='ion-ios-star-outline' ></i></span>
-		<div id="DIV_5">
-             <span  id="SPAN_6">Επιπεδο {{level ? level : "1"}}</span> 
-			 
-             <span id="SPAN_7"> 
-			<div id="DIV_8">
-				<div style="width:{{level? level*10 : 10}}%;" id="DIV_9">
+     <span id="SPAN_3" style='font-size:60px;' ><i   class='ion-ios-star-outline' ></i></span>
+     <div id="DIV_5">
+       <span  id="SPAN_6">Επιπεδο {{level ? level : "1"}}</span> 
+       
+       <span id="SPAN_7"> 
+         <div id="DIV_8">
+            <div style="width:{{level? level*10 : 10}}%;" id="DIV_9">
 
-				</div>
-			</div> <span id="SPAN_10"><small>Αρχαριος</small></span>
-</span>
-		</div>
-		<!-- /.info-box-content -->
+            </div>
+        </div> <span id="SPAN_10"><small>Αρχαριος</small></span>
+    </span>
+</div>
+<!-- /.info-box-content -->
 
-	</div>
-	<div class="boxa" id="info-box-blue">
-		 <span id="SPAN_12"><i style='font-size:60px;' class="ion-ios-list-outline"></i></span>
-		<div id="DIV_14">
-             <span ng-if='!count' id="SPAN_15">Καμια αποδειξη</span> 
-			 <span ng-if='count' id="SPAN_15">{{count}} {{count == 1 ? "Αποδειξη" : "Αποδειξεις"}}</span> 
-			<div id="DIV_17">
-				<div style="width:{{count? count*4 : 0}}%;" id="DIV_18">
+</div>
+<div class="boxa" id="info-box-blue">
+ <span id="SPAN_12"><i style='font-size:60px;' class="ion-ios-list-outline"></i></span>
+ <div id="DIV_14">
+   <span ng-if='!count' id="SPAN_15">Καμια αποδειξη</span> 
+   <span ng-if='count' id="SPAN_15">{{count}} {{count == 1 ? "Αποδειξη" : "Αποδειξεις"}}</span> 
+   <div id="DIV_17">
+    <div style="width:{{count? count*4 : 0}}%;" id="DIV_18">
 
-				</div>
+    </div>
 
-			</div> 
-			<small>Αρχαριος</small>
+</div> 
+<small>Αρχαριος</small>
 
-		</div>
+</div>
 
-	</div>
-	<div class="boxa" id="info-box-blue">
-		 <span id="SPAN_12"><i style='font-size:60px;' class="ion-ios-cart-outline"></i></span>
-		<div id="DIV_14">
-             <span ng-if='!sum' id="SPAN_15">Εξοδα 0€</span> 
-			 <span ng-if='sum' id="SPAN_15">Εξοδα {{sum | number:2}}€</span> 
-			<div id="DIV_17">
-				<div style="width:{{sum? sum%100 : 0}}%;" id="DIV_18">
+</div>
+<div class="boxa" id="info-box-blue">
+ <span id="SPAN_12"><i style='font-size:60px;' class="ion-ios-cart-outline"></i></span>
+ <div id="DIV_14">
+   <span ng-if='!sum' id="SPAN_15">Εξοδα 0€</span> 
+   <span ng-if='sum' id="SPAN_15">Εξοδα {{sum | number:2}}€</span> 
+   <div id="DIV_17">
+    <div style="width:{{sum? sum%100 : 0}}%;" id="DIV_18">
 
-				</div>
+    </div>
 
-			</div> 
-			<small>Αρχαριος</small>
+</div> 
+<small>Αρχαριος</small>
 
-		</div>
+</div>
 
-	</div>
+</div>
 
-	<div class="boxa" id="info-box-green">
-		 <span id="SPAN_12"><i style='font-size:60px;' class="ion-ios-cloud-upload-outline"></i></span>
-		<div id="DIV_14">
-			 <span id="SPAN_15">Cloud {{logged ? 'Yes' : 'No'}}</span> 
-			<div id="DIV_17">
-				<div id="DIV_18">
+<div class="boxa" id="info-box-green">
+ <span id="SPAN_12"><i style='font-size:60px;' class="ion-ios-cloud-upload-outline"></i></span>
+ <div id="DIV_14">
+    <span id="SPAN_15">Cloud {{logged ? 'Yes' : 'No'}}</span> 
+    <div id="DIV_17">
+        <div style="width:{{logged? 100 : 0}}%;" id="DIV_18">
 
-				</div>
+        </div>
 
-			</div> 
-			
-		</div>
-		<!-- /.info-box-content -->
+    </div> 
+    
+</div>
+<!-- /.info-box-content -->
 
-	</div>
+</div>
 	<!-- <div class="boxa" id="info-box-red">
 		 <span id="SPAN_12"><i style='font-size:60px;' class="ion-clipboard"></i></span>
 		<div id="DIV_14">
@@ -88,15 +88,15 @@
 	
 
 </div>
-  </ion-content>
-  <ion-footer-bar align-title="left" class="bar-assertive" style="
-    background: none;
-    border: none;
-    padding: 0;
+</ion-content>
+<ion-footer-bar align-title="left" class="bar-assertive" style="
+background: none;
+border: none;
+padding: 0;
 ">  
 
-    <button ng-click="showPopup()" style="margin: 0;height: 100%;" class="button-full btn waves-effect waves-teal"><h1 class="title"><i class='ion-clipboard'></i>&nbsp Αποδειξη</h1></button>
-    
+<button ng-click="showPopup()" style="margin: 0;height: 100%;" class="button-full btn waves-effect waves-teal"><h1 class="title"><i class='ion-clipboard'></i>&nbsp Αποδειξη</h1></button>
+
 </ion-footer-bar>
 </ion-view>
 
@@ -106,25 +106,25 @@
 
 <style type="text/css">
 	#DIV_1 {
-    box-sizing: border-box;
-    color: rgb(51, 51, 51);
-    height: 420px;
-    min-height: 1px;
-    position: relative;
-    perspective-origin: 275.984375px 210px;
-    transform-origin: 275.984375px 210px;
-    border: 0px none rgb(51, 51, 51);
-    font: normal normal normal normal 14px/20px 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    outline: rgb(51, 51, 51) none 0px;
-    padding: 0px 15px;
-}/*#DIV_1*/
-.boxa{
-	height: 70px !important;
-	min-height: 70px !important;
-}
+        box-sizing: border-box;
+        color: rgb(51, 51, 51);
+        height: 420px;
+        min-height: 1px;
+        position: relative;
+        perspective-origin: 275.984375px 210px;
+        transform-origin: 275.984375px 210px;
+        border: 0px none rgb(51, 51, 51);
+        font: normal normal normal normal 14px/20px 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        outline: rgb(51, 51, 51) none 0px;
+        padding: 0px 15px;
+    }/*#DIV_1*/
+    .boxa{
+       height: 70px !important;
+       min-height: 70px !important;
+   }
 
 
-#info-box-yellow{
+   #info-box-yellow{
     box-shadow: rgba(0, 0, 0, 0.0980392) 0px 1px 1px 0px;
     box-sizing: border-box;
     color: rgb(255, 255, 255);

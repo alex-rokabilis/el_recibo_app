@@ -52,7 +52,7 @@ angular.module('Settings.controllers', [])
     }
     $scope.register = function() {
         if ($scope.email && $scope.password) {
-            api.register($scope.email, $scope.password);
+            return api.register($scope.email, $scope.password);
             $scope.register_state = false;
             $scope.logged = true;
             console.log('sucess')

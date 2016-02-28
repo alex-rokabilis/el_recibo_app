@@ -41,25 +41,25 @@ angular.module('starter', ['ionic',
             StatusBar.styleDefault();
         }
         //DB.seed();
-                api.getPromotions().then(function(data){
-                    if(data.new_proms.length){
-                        var x = data.new_proms[0];
-                        cordova.plugins.notification.local.schedule({
-                            id: ++window.iiid,
-                            title: "Νεα προσφορα απο Cafe Bar",
-                            text: x.title
-                        });
-                        $ionicPopup.show({
-                            template: '<img src=""> <p>'+x.title+'</p>',
-                            title: 'Νεα προσφορα απο Cafe Ba',
-                            cssClass: 'custom-popup animated-popup rubberBand-popup',
-                            buttons: [
-                                { text: 'OK',type: 'btn-floating btn-large waves-effect waves-light'}
-                            ]
-                        });
-                        $state.go('app.promotions')
-                    }
-                })    
+                // api.getPromotions().then(function(data){
+                //     if(data.new_proms.length){
+                //         var x = data.new_proms[0];
+                //         cordova.plugins.notification.local.schedule({
+                //             id: ++window.iiid,
+                //             title: "Νεα προσφορα απο Cafe Bar",
+                //             text: x.title
+                //         });
+                //         $ionicPopup.show({
+                //             template: '<img src=""> <p>'+x.title+'</p>',
+                //             title: 'Νεα προσφορα απο Cafe Ba',
+                //             cssClass: 'custom-popup animated-popup rubberBand-popup',
+                //             buttons: [
+                //                 { text: 'OK',type: 'btn-floating btn-large waves-effect waves-light'}
+                //             ]
+                //         });
+                //         $state.go('app.promotions')
+                //     }
+                // })    
 
     });
 })
